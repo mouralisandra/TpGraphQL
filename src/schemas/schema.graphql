@@ -1,0 +1,66 @@
+enum Role {
+  USER
+  ADMIN
+}
+
+interface IdentifiableById {
+  id: Int!
+}
+
+type CV implements IdentifiableById {
+  id: Int!
+  name: String!
+  age: String!
+  job: String!
+  skills: [Skill!]
+  user: User!
+}
+
+type Skill implements IdentifiableById {
+  id: Int!
+  designation: String!
+  cvs: [CV!]
+}
+
+type User implements IdentifiableById {
+  id: Int!
+  name: String!
+  email: String!
+  role: Role!
+  cvs: [CV]!
+}
+
+type Query {
+  allCVs: [CV]!
+  oneCV(id: Int!): CV
+  allSkills: [Skill]!
+}
+
+input CreateCVInput {
+  name: String!
+  age: String!
+  job: String!
+  skillIds: [Int]!
+  userId: Int!
+}
+
+input UpdateCVInput {
+
+  name: String
+  age: String
+  job: String
+  skillIds: [Int]
+  userId: Int
+}
+
+type Mutation {
+  createCV(input: CreateCVInput!): CV
+  updateCV(id: Int!, input: UpdateCVInput!): CV
+  deleteCV(id: Int!): Boolean!
+}
+
+
+type Subscription {
+  CVUpdates: CV!
+
+}

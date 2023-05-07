@@ -1,0 +1,112 @@
+//Get all cvs:
+query {
+  allCVs {
+    id
+    name
+    age
+    job
+    skills {
+      id
+      designation
+    }
+    user {
+      id
+      name
+      email
+      role
+    }
+  }
+}
+
+//Get cvs by Id
+query {
+  oneCV(id: 3) {
+    name
+    age
+    job
+    skills {
+      designation
+    }
+    user {
+      name
+      email
+      role
+    }
+  }
+}
+
+//'createCV mutation:
+mutation {
+  createCV(input: {
+    name: "Yvonne Mourali",
+    age: "2",
+    job: "Disobedient Dog",
+    skillIds: [1, 4],
+    userId: 1
+  }) {
+    id
+    name
+    age
+    job
+    skills {
+      id
+      designation
+    }
+    user {
+      id
+      name
+      email
+      role
+    }
+  }
+}
+
+//updateCV mutation:
+mutation {
+  updateCV(id: 1, input: {
+    name: "Sandritta Mourali",
+    skillIds: [2, 3],
+    userId: 2
+  }) {
+    id
+    name
+    age
+    job
+    skills {
+      id
+      designation
+    }
+    user {
+      id
+      name
+      email
+      role
+    }
+  }
+}
+
+//Delete CV Mutation
+mutation {
+  deleteCV(id: 1)
+}
+
+
+//Testing the Subscription on cv updates:
+subscription {
+  CVUpdates {
+    id
+    name
+    age
+    job
+    skills {
+      id
+      designation
+    }
+    user {
+      id
+      name
+      email
+      role
+    }
+  }
+}

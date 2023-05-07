@@ -1,0 +1,6 @@
+schema: 'schema/schema.graphql'
+extensions:
+  endpoints:
+    main-server:
+      url: 'http://localhost:4000'
+  
