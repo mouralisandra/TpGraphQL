@@ -2,7 +2,7 @@ import { createServer } from 'node:http'
 import { createYoga } from 'graphql-yoga'
 import { createPubSub } from '@graphql-yoga/subscription'
 import { schema } from './src/schema'
-import { db } from './src/db/db'
+import { db } from './src/DataBase/db'
 
 
 type PubSubChannels = {
