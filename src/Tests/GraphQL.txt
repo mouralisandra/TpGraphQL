@@ -1,5 +1,4 @@
-//Get all cvs:
-query {
+query CVsFetch {
   CVsFetch {
     id
     name
@@ -18,8 +17,7 @@ query {
   }
 }
 
-//Get cvs by Id
-query {
+query CVByID{
   CVByID(id: 3) {
     name
     age
@@ -35,8 +33,7 @@ query {
   }
 }
 
-//'createCV mutation:
-mutation {
+mutation createCV{
   createCV(input: {
     name: "Yvonne Mourali",
     age: "2",
@@ -61,8 +58,7 @@ mutation {
   }
 }
 
-//updateCV mutation:
-mutation {
+mutation updateCV{
   updateCV(id: 1, input: {
     name: "Sandritta Mourali",
     skillIds: [2, 3],
@@ -85,14 +81,12 @@ mutation {
   }
 }
 
-//Delete CV Mutation
-mutation {
+
+mutation deleteCV{
   deleteCV(id: 1)
 }
 
-
-//Testing the Subscription on cv updates:
-subscription {
+subscription CVUpdates{
   CVUpdates {
     id
     name

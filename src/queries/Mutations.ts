@@ -32,16 +32,11 @@ export const Mutation = {
       throw new GraphQLError(` cv d'id ${id} n'existe pas.`);
     }
     let cv = db.cvs[cvIndex];
-    console.log("cv ",cv);
-
     let newSkills =[]
     if ( skillIds )
     { 
       newSkills = db.skills.filter((skill) => skillIds.includes(skill.id));
-      console.log("ss",newSkills);
       cv.skills = newSkills;
-       //cv;skills = newSkills ;
-       //console.log("ss2",cv[]);
     }
       
     if ( userId)
@@ -54,17 +49,19 @@ export const Mutation = {
         cv[user] = user ;
       }
     }
-    console.log("ss5",newSkills);
-    console.log("ss4",cv.skills);
+
     for(let key in input){
       if( key != skillIds && key != userId )
         cv[key] = input[key];
 
     }
-    console.log("ss3",cv.skills);
+
+//The Publish Subscribe part:
     pubSub.publish('CVUpdates', cv );
     return cv;
   },
+
+
   deleteCV: (_parent: never, { id }: { id: number }, { db, pubSub }) => {
     const index = db.cvs.findIndex((cv) => cv.id === id);
     if (index === -1) {
@@ -89,6 +86,7 @@ export const Mutation = {
       db.users[userIndex].cvs = db.users[userIndex].cvs.filter((cv) => cv.id !== id);
     }
 
+    //The Publish Subscribe part:
     pubSub.publish('CVUpdates', deletedCV);
     return true;
   }
