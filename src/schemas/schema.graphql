@@ -3,11 +3,7 @@ enum Role {
   ADMIN
 }
 
-interface IdentifiableById {
-  id: Int!
-}
-
-type CV implements IdentifiableById {
+type CV  {
   id: Int!
   name: String!
   age: String!
@@ -16,13 +12,13 @@ type CV implements IdentifiableById {
   user: User!
 }
 
-type Skill implements IdentifiableById {
+type Skill  {
   id: Int!
   designation: String!
   cvs: [CV!]
 }
 
-type User implements IdentifiableById {
+type User  {
   id: Int!
   name: String!
   email: String!
@@ -45,7 +41,6 @@ input CreateCVInput {
 }
 
 input UpdateCVInput {
-
   name: String
   age: String
   job: String

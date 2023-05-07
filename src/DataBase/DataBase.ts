@@ -1,8 +1,5 @@
-interface IdentifiableById {
+interface CV  {
   id: number;
-}
-
-interface CV extends IdentifiableById {
   name: string;
   age: string;
   job: string;
@@ -10,11 +7,13 @@ interface CV extends IdentifiableById {
   user: User;
 }
 
-interface Skill extends IdentifiableById {
+interface Skill  {
+  id: number;
   designation: string;
   }
 
-interface User extends IdentifiableById {
+interface User  {
+  id: number;
   name: string;
   email: string;
   role: Role;
@@ -27,10 +26,10 @@ enum Role {
 }
 
 const skills: Skill[] = [
-  { id: 1, designation: "Nest"},
-  { id: 2, designation: "Java "},
+  { id: 1, designation: "NestJs"},
+  { id: 2, designation: "JTechwall"},
   { id: 3, designation: "GraphQL" },
-  { id: 4, designation: "java script"},
+  { id: 4, designation: "TypeScript" },
 ];
 
 const users: User[] = [
@@ -69,7 +68,7 @@ const cvs: CV[] = [
     id: 1,
     name: "cv1",
     age: "21",
-    job: "software engineer Student",
+    job: "Etudiant(e) en Génie Logiciel",
     skills: [skills[0]],
     user: users[0],
   },
@@ -77,7 +76,7 @@ const cvs: CV[] = [
     id: 2,
     name: "cv2",
     age: "21",
-    job: "software engineer Student",
+    job: "Etudiant(e) en Génie Logiciel",
     skills: [skills[1]],
     user: users[1],
   },
@@ -85,7 +84,7 @@ const cvs: CV[] = [
     id: 3,
     name: "cv3",
     age: "21",
-    job: "software engineer Student",
+    job: "Etudiant(e) en Génie Logiciel",
     skills:[skills[0],skills[2]],
     user: users[2],
 },
@@ -93,7 +92,7 @@ const cvs: CV[] = [
     id: 4 ,
     name: "cv4",
     age: "21",
-    job: "software engineer Student",
+    job: "Etudiant(e) en Génie Logiciel",
     skills:[skills[3]],
     user: users[0],
 },
