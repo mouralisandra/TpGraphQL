@@ -27,9 +27,9 @@ type User  {
 }
 
 type Query {
-  allCVs: [CV]!
-  oneCV(id: Int!): CV
-  allSkills: [Skill]!
+  CVsFetch: [CV]!
+  CVByID(id: Int!): CV
+  SkillsFetch: [Skill]!
 }
 
 input CreateCVInput {

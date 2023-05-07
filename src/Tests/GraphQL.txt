@@ -1,6 +1,6 @@
 //Get all cvs:
 query {
-  allCVs {
+  CVsFetch {
     id
     name
     age
@@ -20,7 +20,7 @@ query {
 
 //Get cvs by Id
 query {
-  oneCV(id: 3) {
+  CVByID(id: 3) {
     name
     age
     job

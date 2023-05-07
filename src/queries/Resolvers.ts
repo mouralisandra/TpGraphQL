@@ -2,11 +2,11 @@ import { GraphQLError } from "graphql";
 
 //Les CVs
 export const  CV= {
-        user: ({user}, _, {db}) => {
-            // const user = db.users.find((user) => user.id === parent.user.id);
-            // if (!user) {
-            //     throw new Error(`User with ID ${parent.userId} not found`);
-            // }
+        user: ({user}, parent, {db}) => {
+            /* const user = db.users.find((user) => user.id === parent.user.id);
+            if (!user) {
+                throw new Error(`User with ID ${parent.userId} not found`);
+            }*/
             return user;
         },
         skills: ({skills}, args, { db }) => {
@@ -16,18 +16,17 @@ export const  CV= {
 
 //Les requêtes:
     export const Query = {
-        allCVs: (_, __, { db }) => {
-    
+        CVsFetch: (parent, args, { db }) => {
             return db.cvs;
         },
-        oneCV: (_, { id }, { db }) => {
+        CVByID: (parent, { id }, { db }) => {
           
             const foundCV = db.cvs.find((cv) => cv.id === id);
             if (!foundCV) throw new GraphQLError("CV not found");
             return foundCV;
         },
     
-        allSkills: (_, __, { db }) => {
+        SkillsFetch: (parent, args, { db }) => {
             return db.skills;
         },
     }
@@ -37,10 +36,10 @@ export const  CV= {
     
         cvs: ({ id } , args, { db }) => {
     
-            const cv_found = db.cvs.filter((cv)=>{
+            const cvfound = db.cvs.filter((cv)=>{
                 return include(cv.skills,"id",id);
             } )
-            return cv_found;
+            return cvfound;
         },
     }
     
