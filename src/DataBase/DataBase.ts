@@ -1,8 +1,5 @@
-interface IdentifiableById {
+interface CV {
   id: number;
-}
-
-interface CV extends IdentifiableById {
   name: string;
   age: string;
   job: string;
@@ -10,11 +7,13 @@ interface CV extends IdentifiableById {
   user: User;
 }
 
-interface Skill extends IdentifiableById {
+interface Skill {
+  id: number;
   designation: string;
   }
 
-interface User extends IdentifiableById {
+interface User {
+  id: number;
   name: string;
   email: string;
   role: Role;

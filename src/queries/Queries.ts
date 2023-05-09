@@ -1,32 +1,37 @@
 import { GraphQLError } from "graphql";
-
 //Les CVs
 export const  CV= {
-        user: ({user}, arg1, {db}) => {
-            /* const user = db.users.find((user) => user.id === arg1.user.id);
-            if (!user) {
-                throw new Error(`User with ID ${arg1.userId} not found`);
-            }*/
+        user: ({user}, _, {db}) => {
             return user;
         },
-        skills: ({skills}, arg2, { db }) => {
+        skills: ({skills}, __, { db }) => {
             return skills;
         },
     }
 
 //Les requêtes:
     export const Query = {
-        CVsFetch: (arg1, arg2, { db }) => {
+        CVsFetch: (_, __, { db }) => {
             return db.cvs;
         },
-        CVByID: (arg1, { id }, { db }) => {
+        CVByID: (_, { id }, { db }) => {
           
             const foundCV = db.cvs.find((cv) => cv.id === id);
-            if (!foundCV) throw new GraphQLError("CV not found");
+            if (!foundCV) throw new GraphQLError("CV not found 404 error",
+            {
+                extensions: {
+                    http: {
+                        status: 404,
+                        headers: {
+                        "x-custom-header": "some-value",
+                        },
+                    },
+                }
+            });
             return foundCV;
         },
     
-        SkillsFetch: (arg1, arg2, { db }) => {
+        SkillsFetch: (_, __, { db }) => {
             return db.skills;
         },
     }
@@ -34,7 +39,7 @@ export const  CV= {
 //Les Skills:
     export const  Skill= {
     
-        cvs: ({ id } , arg2, { db }) => {
+        cvs: ({ id } , __, { db }) => {
     
             const cvfound = db.cvs.filter((cv)=>{
                 return include(cv.skills,"id",id);
@@ -43,6 +48,7 @@ export const  CV= {
         },
     }
     
+//Fonction de recherche:  
     export function include (array ,attribut = "",value){
         return array.some((element) => element[attribut] == value );
     }

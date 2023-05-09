@@ -3,7 +3,8 @@ import fs from "fs"
 import path from "path"
 import { Mutation } from '../Queries/Mutations'
 import { Subscription } from '../Queries/Subscriptions'
-import {Query,Skill, CV } from '../Queries/Resolvers'
+import {makeExecutableSchema} from "@graphql-tools/schema";
+import {Query,Skill, CV } from '../Queries/Queries'
  
 export const schema = createSchema({
   typeDefs: fs.readFileSync(path.join(__dirname,"/schema.graphql"),"utf-8"),
@@ -13,6 +14,5 @@ export const schema = createSchema({
     Query,
     Mutation,
     Subscription
-
   }
 })
