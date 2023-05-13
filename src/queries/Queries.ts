@@ -39,7 +39,7 @@ export const  CV= {
 //Les Skills:
     export const  Skill= {
     
-        cvs: ({ id } , __, { db }) => {
+        cvs: ({ id } , _, { db }) => {
     
             const cvfound = db.cvs.filter((cv)=>{
                 return include(cv.skills,"id",id);
